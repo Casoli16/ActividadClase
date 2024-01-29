@@ -1,0 +1,41 @@
+CREATE DATABASE dbActividad
+USE dbActividad
+
+CREATE TABLE tbProyectos(
+id_proyecto INT PRIMARY KEY,
+nombre_proyecto VARCHAR(50)
+);
+
+CREATE TABLE tbCargos(
+id_cargo INT PRIMARY KEY,
+cargo_empleado INT
+);
+
+CREATE TABLE tbDepartamentos(
+id_departamento INT PRIMARY KEY,
+nombre_departamento VARCHAR(50)
+);
+
+CREATE TABLE tbEmpleados(
+id_empleado INT PRIMARY KEY,
+nombre_empleado VARCHAR(50),
+apellido_empleado VARCHAR(50),
+fecha_inicio_empleado VARCHAR(50),
+salario_empleado FLOAT,
+id_cargo INT,
+id_departamento INT
+);
+
+ALTER TABLE tbEmpleado
+ADD CONSTRAINT fk_id_cargo FOREIGN KEY (id_cargo) REFERENCES tbCargo(id_cargo),
+ADD CONSTRAINT fk_id_departamento FOREIGN KEY (id_departamento) REFERENCES tbDepartamentos (id_departamento);
+
+CREATE TABLE tbRelaciones(
+id_relacion INT PRIMARY KEY,
+id_proyecto INT,
+id_Empleado INT
+);
+
+ALTER TABLE tbRelaciones
+ADD CONSTRAINT fk_id_proyecto FOREIGN KEY (id_proyecto) REFERENCES tbProyectos(id_proyecto),
+ADD CONSTRAINT fk_id_empleado FOREIGN KEY (id_empleado) REFERENCES tbEmpleados id_empleado);
