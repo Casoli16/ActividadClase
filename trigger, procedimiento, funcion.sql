@@ -274,5 +274,20 @@ END
 DELIMITER;
 
 
+CREATE PROCEDURE AgregarCupon(codigo VARCHAR(100), porcentaje INT, estado BOOL)
+BEGIN
+    -- Declaramos la variable que contendrá el día de ingreso del cupón
+    DECLARE fechaActual DATE;
+    SET fechaActual = CURDATE();
+    
+    INSERT INTO cuponOferta(codigo_cupon, porcentaje_cupon, estado_cupon, fecha_ingreso_cupon) VALUES (codigo, porcentaje, estado, fechaActual);
+
+END //
+
+DELIMITER ;
+
+CALL AgregarCupon ('TREBOR', 30, 1);
+
+
 
 /*SELECT * FROM valoraciones, detallespedidos, pedidos, productos, subcategorias, administradores, Permisos, clientes;*/
